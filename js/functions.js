@@ -10,3 +10,15 @@ function checkPalenrom(string){
   }
   return normalStr===reversStr;
 }
+
+const checkWorkingHours=(workStart,workEnd,meetingStart,meetingDuration)=>{
+
+  const getMinutesFromHours=(timeString)=>{
+    const[hours, minutes]=timeString.split(':');
+    return Number(hours)*60 + Number(minutes);
+  };
+  const workStartMinutes = getMinutesFromHours(workStart);
+  const workEndMinutes = getMinutesFromHours(workEnd);
+  const meetingStartMinutes = getMinutesFromHours(meetingStart);
+  return workStartMinutes <= meetingStartMinutes && meetingStartMinutes + meetingDuration <= workEndMinutes;
+};
